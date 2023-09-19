@@ -1,4 +1,4 @@
-import { wordWrap } from '../core/wordwrap'
+import { wordWrap, ColumnWidth, WrappableText } from '../core/wordwrap'
 
 describe('word Wrap', () => {
 	it('breaks a word into silabus', () => {
@@ -12,3 +12,19 @@ describe('word Wrap', () => {
 	})
 })
 
+describe('column width',
+	() => {
+		it('prevents negative columns', () => {
+			expect(() => ColumnWidth.create(-1))
+				.toThrow('Negative column width is not allowed')
+		})
+		it('returns the value', () => {
+			expect(ColumnWidth.create(1).value()).toBe(1)
+		})
+	})
+
+describe('Wrappable Text', () => {
+	it('returns the value', () => {
+		expect(WrappableText.create('abc').value()).toBe('abc')
+	});
+})
